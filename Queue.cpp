@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Queue.h"
 
 #define Elemtype int
 #define MaxSize 50
