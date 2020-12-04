@@ -116,7 +116,7 @@ int main()
     int length = 9;
     // Insertion_Sort(A, 9);
     // InsertHalf_Sort(A, length);
-    Quick_Sort(A, length);
+    // Quick_Sort(A, length);
     for (int i = 0; i < length; i++)
     {
         cout << A[i] << endl;
