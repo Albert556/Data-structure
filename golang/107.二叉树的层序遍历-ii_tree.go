@@ -23,33 +23,50 @@ type TreeNode struct {
  *     Right *TreeNode
  * }
  */
+// // BFS
+// func levelOrderBottom(root *TreeNode) [][]int {
+// 	t := [][]int{}
+// 	if root == nil {
+// 		return t
+// 	}
+// 	quene := []*TreeNode{}
+// 	quene = append(quene, root)
 
+// 	for len(quene) > 0 {
+// 		size := len(quene)
+// 		level := []int{}
+// 		for ; size > 0; size-- {
+// 			if quene[0].Left != nil {
+// 				quene = append(quene, quene[0].Left)
+// 			}
+// 			if quene[0].Right != nil {
+// 				quene = append(quene, quene[0].Right)
+// 			}
+// 			level = append(level, quene[0].Val)
+// 			quene = quene[1:]
+// 		}
+// 		t = append(t, level)
+// 	}
+// 	length := len(t)
+// 	for i := 0; i < length/2; i++ {
+// 		t[i], t[length-i-1] = t[length-i-1], t[i]
+// 	}
+
+// 	return t
+// }
+
+// DFS
 func levelOrderBottom(root *TreeNode) [][]int {
 	t := [][]int{}
 	if root == nil {
 		return t
 	}
-	quene := []*TreeNode{}
-	quene = append(quene, root)
 
-	for len(quene) > 0 {
-		size := len(quene)
-		level := []int{}
-		for ; size > 0; size-- {
-			if quene[0].Left != nil {
-				quene = append(quene, quene[0].Left)
-			}
-			if quene[0].Right != nil {
-				quene = append(quene, quene[0].Right)
-			}
-			level = append(level, quene[0].Val)
-			quene = quene[1:]
-		}
-		t = append(t, level)
-	}
-	length := len(t)
-	for i := 0; i < length/2; i++ {
-		t[i], t[length-i-1] = t[length-i-1], t[i]
+	stack := []*TreeNode{}
+	for len(stack) != nil {
+		p := stack[-1:]
+		level++
+
 	}
 
 	return t
