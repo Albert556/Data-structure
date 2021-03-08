@@ -35,3 +35,11 @@
         path.append(root.val)
         dfs_mid(root.right)
     ```
+
+## 疑问
+1. go中```'1'```和```byte(1)```的区别(leetcode使用```'1'```通过（1.15）,本地```byte(1)```通过（1.16）)
+<details>
+  <summary>答案</summary>
+  （占位）
+</details>
+
