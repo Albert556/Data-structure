@@ -145,20 +145,20 @@ func numIslands(grid [][]byte) int {
 
 	for i := 0; i < rows; i++ {
 		for j := 0; j < cols; j++ {
-			if grid[i][j] == '0' {
+			if grid[i][j] == uint8(0) {
 				water++
 			} else {
 				for _, d := range dic {
 					x := i + d[0]
 					y := j + d[1]
-					if x >= 0 && x < rows && y >= 0 && y < cols && grid[x][y] == '1' {
+					if x >= 0 && x < rows && y >= 0 && y < cols && grid[x][y] == uint8(1) {
 						u.union(x*cols+y, i*cols+j)
 					}
 				}
 			}
 		}
 	}
-	fmt.Println(u.root)
+	fmt.Printf("%T", grid[0][0])
 	return u.getCount() - water
 }
 
