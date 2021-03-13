@@ -35,34 +35,33 @@ func calculate(s string) int {
 			return
 		}
 		b := nums[len(nums)-1]
-		nums = nums[:len(nums)-1]
-		a := nums[len(nums)-1]
-		nums = nums[:len(nums)-1]
+		a := nums[len(nums)-2]
+		nums = nums[:len(nums)-2]
 		op := ops[len(ops)-1]
 		ops = ops[:len(ops)-1]
-		ans := 0
-		if op == '+' {
-			ans = a + b
-		} else if op == '-' {
-			ans = a - b
-		} else if op == '*' {
-			ans = a * b
-		} else if op == '/' {
-			ans = a / b
-		} else if op == '^' {
-			ans = int(math.Pow(float64(a), float64(b)))
-		} else if op == '%' {
-			ans = a % b
+		switch op {
+		case '+':
+			nums = append(nums, a+b)
+		case '-':
+			nums = append(nums, a-b)
+		case '*':
+			nums = append(nums, a*b)
+		case '/':
+			nums = append(nums, a/b)
+		case '^':
+			nums = append(nums, int(math.Pow(float64(a), float64(b))))
+		case '%':
+			nums = append(nums, a%b)
 		}
-		nums = append(nums, ans)
 
 	}
 
 	nums = append(nums, 0)
 	for i := 0; i < len(s); i++ {
-		if s[i] == '(' {
+		switch s[i] {
+		case '(':
 			ops = append(ops, s[i])
-		} else if s[i] == ')' {
+		case ')':
 			for len(ops) > 0 {
 				if ops[len(ops)-1] != '(' {
 					calc()
@@ -71,7 +70,7 @@ func calculate(s string) int {
 					break
 				}
 			}
-		} else {
+		default:
 			if '0' <= s[i] && s[i] <= '9' {
 				num := int(s[i] - '0')
 				j := i + 1
@@ -81,10 +80,12 @@ func calculate(s string) int {
 				nums = append(nums, num)
 				i = j - 1
 			} else {
-				if len(ops) > 0 && ops[len(ops)-1] != '(' {
+				for len(ops) > 0 && ops[len(ops)-1] != '(' {
 					preOps := ops[len(ops)-1]
 					if priority[preOps] >= priority[s[i]] {
 						calc()
+					} else {
+						break
 					}
 				}
 				ops = append(ops, s[i])
@@ -96,37 +97,6 @@ func calculate(s string) int {
 		calc()
 	}
 	return nums[len(nums)-1]
-}
-
-func calc(nums []int, ops []byte) {
-	if len(nums) < 2 {
-		return
-	}
-	if (len(ops)) == 0 {
-		return
-	}
-	b := nums[len(nums)-1]
-	nums = nums[:len(nums)-1]
-	a := nums[len(nums)-1]
-	nums = nums[:len(nums)-1]
-	op := ops[len(ops)-1]
-	ops = ops[:len(ops)-1]
-	ans := 0
-	if op == '+' {
-		ans = a + b
-	} else if op == '-' {
-		ans = a - b
-	} else if op == '*' {
-		ans = a * b
-	} else if op == '/' {
-		ans = a / b
-	} else if op == '^' {
-		ans = int(math.Pow(float64(a), float64(b)))
-	} else if op == '%' {
-		ans = a % b
-	}
-	nums = append(nums, ans)
-
 }
 
 // single stack
@@ -165,5 +135,5 @@ func calc(nums []int, ops []byte) {
 // @lc code=end
 
 func main() {
-	fmt.Println(calculate("-1+ (31+2)*3"))
+	fmt.Println(calculate("1*2-3/4+5*6-7*8+9/10"))
 }
