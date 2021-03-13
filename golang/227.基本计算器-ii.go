@@ -68,6 +68,7 @@ func calculate(s string) int {
 					calc()
 				} else {
 					ops = ops[:len(ops)-1]
+					break
 				}
 			}
 		} else {
@@ -164,5 +165,5 @@ func calc(nums []int, ops []byte) {
 // @lc code=end
 
 func main() {
-	fmt.Println(calculate("(31+2)*3"))
+	fmt.Println(calculate("-1+ (31+2)*3"))
 }
