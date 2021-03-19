@@ -26,19 +26,11 @@ func hasPathSum(root *TreeNode, targetSum int) bool {
 	if root == nil {
 		return false
 	}
-	var f func(root *TreeNode, sum int) bool
-	f = func(root *TreeNode, sum int) bool {
-		if root == nil {
-			return false
-		}
-		if root.Left == nil && root.Right == nil {
-			return sum == root.Val
-		}
-
-		return f(root.Left, sum-root.Val) || f(root.Right, sum-root.Val)
+	if root.Left == nil && root.Right == nil {
+		return targetSum == root.Val
 	}
+	return hasPathSum(root.Left, targetSum-root.Val) || hasPathSum(root.Right, targetSum-root.Val)
 
-	return f(root, targetSum)
 }
 
 // @lc code=end
