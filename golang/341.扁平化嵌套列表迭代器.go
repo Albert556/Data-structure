@@ -8,15 +8,17 @@ package main
 type NestedInteger struct {
 }
 
-func (this NestedInteger) IsInteger() bool {}
+func (this NestedInteger) IsInteger() bool {
+	return false
+}
 
-func (this NestedInteger) GetInteger() int {}
+func (this NestedInteger) GetInteger() int { return 0 }
 
-func (n *NestedInteger) SetInteger(value int) {}
+func (n *NestedInteger) SetInteger(value int) { return }
 
 func (this *NestedInteger) Add(elem NestedInteger) {}
 
-func (this NestedInteger) GetList() []*NestedInteger {}
+func (this NestedInteger) GetList() []*NestedInteger { return []*NestedInteger{} }
 
 // @lc code=start
 /**
